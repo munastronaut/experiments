@@ -7,6 +7,20 @@ section .data
 section .text
     global _start
 
+%macro print 2
+    mov rax, 1
+    mov rdi, 1
+    mov rsi, %1
+    mov rdx, %2
+    syscall
+%endmacro
+
+%macro exit 0
+    mov rax, 60
+    xor rdi, rdi
+    syscall
+%endmacro
+
 _start:
     mov eax, 0x80000008
     cpuid
@@ -30,12 +44,6 @@ _start:
     mov [msg + 33], al
     mov [msg + 34], ah
 
-    mov rdi, 1
-    mov rsi, msg
-    mov rdx, len
-    mov rax, 1
-    syscall
+    print msg, len
 
-    mov rax, 60
-    xor rdi, rdi
-    syscall
+    exit
