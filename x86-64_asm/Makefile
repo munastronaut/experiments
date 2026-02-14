@@ -10,6 +10,8 @@ SRCS = $(shell find $(SRC_DIR) -name "*.asm")
 
 BINS = $(patsubst $(SRC_DIR)/%.asm, $(BIN_DIR)/%, $(SRCS))
 
+.PRECIOUS: $(OBJ_DIR)/%.o
+
 all: $(BINS)
 
 $(BIN_DIR)/%: $(OBJ_DIR)/%.o
