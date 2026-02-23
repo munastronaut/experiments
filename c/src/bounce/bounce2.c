@@ -14,7 +14,7 @@ static int const colors[] = {196, 202, 208, 214, 220, 226, 190, 154, 118, 82,
 
 static volatile sig_atomic_t running = 1;
 
-void cleanup(int sig) { running = 0; }
+void cleanup([[maybe_unused]] int sig) { running = 0; }
 
 int main() {
     signal(SIGINT, cleanup);
@@ -33,9 +33,8 @@ int main() {
 
     while (running) {
         ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-        printf(
-            "\r\x1b[K%*s\x1b[1;38;5;%dm\x46\x75\x63\x6b\x20\x59\x6f\x75\x1b[0m",
-            spaces, "", colors[color_idx]);
+        printf("\r\x1b[K%*s\x1b[1;38;5;%dm\x46\x75\x63\x6b\x20\x59\x6f\x75\x1b[0m", spaces, "",
+               colors[color_idx]);
         fflush(stdout);
 
         color_idx = (color_idx + 1) % color_count;

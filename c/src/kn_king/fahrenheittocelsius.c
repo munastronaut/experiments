@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 int main() {
-    double constexpr FREEZING_PT = 32.0;
-    double constexpr SCALE_FACTOR = 5.0 / 9.0;
+    constexpr double FREEZING_PT = 32.0;
+    constexpr double SCALE_FACTOR = 5.0 / 9.0;
     double fahrenheit;
 
     printf("Enter Fahrenheit temperature: ");
