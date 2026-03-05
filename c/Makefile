@@ -1,5 +1,5 @@
 CC := cc
-CC_FLAGS := -O2
+CC_FLAGS := -O2 -std=c23
 SRC := src
 BIN := bin
 
